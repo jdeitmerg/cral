@@ -1,6 +1,12 @@
 import string
 import matplotlib.pyplot as plt
 
+#frequencies of letters in english texts
+hist_eng = [.08167, .01492, .02782, .04253, .012702, .02228, .02015, .06094,
+            .06966, .00153, .00772, .04025, .02406, .06749, .07507, .01929,
+            .00095, .05987, .06327, .09056, .02758, .00978, .02361, .00150,
+            .01974, .00074]
+
 class framework:
     """Cryptographic analysis class
 
@@ -117,14 +123,14 @@ class framework:
         return res
 
     def norm_hist(self, inp):
-        """Norms the given letter history so the sum is 1."""
+        """Norms the given letter histogram so the sum is 1."""
 
         s = sum(inp)
         res = [val/s for val in inp]
         return res
 
     def norm_hist_sig(self, inp):
-        """Norms the given letter history to [-1,1]."""
+        """Norms the given letter histogram to [-1,1]."""
 
         hist = self.norm_hist(inp)
         avg = 1/self.alphlen
@@ -132,7 +138,7 @@ class framework:
         return res
 
     def plot_hist(self, inp):
-        """Plots the given letter history."""
+        """Plots the given letter histogram."""
 
         plt.bar(self.indexes, inp, align='center')
         plt.xticks(self.indexes, self.alphabet) #label x values
@@ -140,3 +146,14 @@ class framework:
         valrng = max(inp)-min(inp)
         plt.ylim([min(inp)-.05*valrng, max(inp)+.05*valrng])
         plt.show()
+
+    def hist_corr(self, hist1, hist2):
+        """Calculates the cross correlation between hist1 and hist2."""
+
+        res = []
+        for i in range(self.alphlen):
+            val = 0
+            for j in range(self.alphlen):
+                val += hist1[j]*hist2[(i+j)%self.alphlen]
+            res.append(val)
+        return res
