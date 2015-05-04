@@ -1,5 +1,6 @@
 import string
 import matplotlib.pyplot as plt
+import operator
 
 #frequencies of letters in english texts
 hist_eng = [.08167, .01492, .02782, .04253, .012702, .02228, .02015, .06094,
@@ -189,4 +190,18 @@ class framework:
             for j in range(self.alphlen):
                 val += hist1[j]*hist2[(i+j)%self.alphlen]
             res.append(val)
+        return res
+
+    def min_hist(self, hist):
+        """Returns smallest element in hist, together with its value."""
+
+        ind, val = min(enumerate(hist), key=operator.itemgetter(1))
+        res = (self.alphabet[ind], val)
+        return res
+
+    def max_hist(self, hist):
+        """Returns biggest element in hist, together with its value."""
+
+        ind, val = max(enumerate(hist), key=operator.itemgetter(1))
+        res = (self.alphabet[ind], val)
         return res
