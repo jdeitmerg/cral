@@ -15,7 +15,8 @@ class framework:
     instance of this class. For arguments, see definition of
     __init__.
     """
-    def __init__(self, alphabet=string.ascii_lowercase, notinalph='ignore'):
+    def __init__(self, alphabet=string.ascii_lowercase,
+                 notinalph='convert, ignore'):
         """Initializes the class with the given parameters.
 
         Parameters:
@@ -34,7 +35,8 @@ class framework:
             - 'convert'
                 cral tries to convert the unknown letter to a known
                 one, e.g. by converting from uppercase to lowercase.
-                Throws an exception if that doesn't work.
+                If that doesn't work, the behavior depends on wether
+                'ignore' is in notinalph as well.
             - 'panic'
                 cral throws an exception whenever it encounteres an
                 unknown letter. 
@@ -64,7 +66,21 @@ class framework:
 
         res = []
         for c in inp:
-            res.append(self.alphabet.index(c))
+            if c in self.alphabet:
+                res.append(self.alphabet.index(c))
+            elif 'convert' in self.notinalph:
+                if c.lower() in self.alphabet:
+                    res.append(self.alphabet.index(c.lower()))
+                elif c.upper() in self.alphabet:
+                    res.append(self.alphabet.index(c.upper()))
+                elif 'ignore' in self.notinalph:
+                    res.append(str(c))
+                else: #includes 'panicÄ
+                    raise Exception('Letter not in alphabet.')
+            elif 'ignore' in self.notinalph:
+                res.append(str(c))
+            else: #includes 'panic'
+                raise Exception('Letter not in alphabet.')
         return res
 
     def _conv_out(self, inp):
@@ -73,7 +89,10 @@ class framework:
 
         res = []
         for c in inp:
-            res.append(self.alphabet[c])
+            if isinstance(c, str):
+                res.append(c) #ignored letter
+            else:
+                res.append(self.alphabet[c])
         if self.isstr:
             return ''.join(res)
         else:
@@ -85,6 +104,10 @@ class framework:
         If in2 is longer than in1, the additional letters are
         ignored. If in2 is shorter than in1, it is repeated to fill
         the missing letters.
+        If in1 contains ignored letters, these will reappear in the
+        output without modification. If in2 contains ignored letters,
+        the corresponding letters in in1 will reappear in the output
+        without modification.
         """
 
         a = self._conv_in(in1)
@@ -93,7 +116,10 @@ class framework:
 
         for ind, letter1 in enumerate(a):
             letter2 = b[ind%len(b)]
-            res.append((letter1+letter2)%self.alphlen)
+            if isinstance(letter1, str) or isinstance(letter2, str):
+                res.append(letter1)
+            else:
+                res.append((letter1+letter2)%self.alphlen)
 
         return(self._conv_out(res))
 
@@ -103,6 +129,10 @@ class framework:
         If in2 is longer than in1, the additional letters are
         ignored. If in2 is shorter than in1, it is repeated to fill
         the missing letters.
+        If in1 contains ignored letters, these will reappear in the
+        output without modification. If in2 contains ignored letters,
+        the corresponding letters in in1 will reappear in the output
+        without modification.
         """
 
         a = self._conv_in(in1)
@@ -111,7 +141,10 @@ class framework:
 
         for ind, letter1 in enumerate(a):
             letter2 = b[ind%len(b)]
-            res.append((letter1-letter2)%self.alphlen)
+            if isinstance(letter1, str) or isinstance(letter2, str):
+                res.append(letter1)
+            else:
+                res.append((letter1-letter2)%self.alphlen)
 
         return(self._conv_out(res))
 
