@@ -2,7 +2,7 @@ import string
 import matplotlib.pyplot as plt
 import operator
 
-#frequencies of letters in english texts
+#Frequencies of letters in English texts. Alphabet is string.ascii_lowercase
 hist_eng = [.08167, .01492, .02782, .04253, .012702, .02228, .02015, .06094,
             .06966, .00153, .00772, .04025, .02406, .06749, .07507, .01929,
             .00095, .05987, .06327, .09056, .02758, .00978, .02361, .00150,
@@ -77,7 +77,7 @@ class framework:
                     res.append(self.alphabet.index(c.upper()))
                 elif 'ignore' in self.notinalph:
                     res.append(str(c))
-                else: #includes 'panicÄ
+                else: #includes 'panic'
                     raise Exception('Letter not in alphabet.')
             elif 'ignore' in self.notinalph:
                 res.append(str(c))
@@ -154,7 +154,8 @@ class framework:
         """Counts how often each of the letters of the alphabet
         occurs in the inp string."""
 
-        res = [inp.count(c) for c in self.alphabet]
+        inind = self._conv_in(inp)
+        res = [inind.count(i) for i in range(self.alphlen)]
         return res
 
     def norm_hist(self, inp):
