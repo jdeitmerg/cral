@@ -44,7 +44,8 @@ class framework:
 
         Default parameters:
         - The alphabet is the lowercase latin alphabet.
-        - unknown letters are ignored.
+        - unknown letters are converted if possible, else they're
+            ignored.
         """
         self.notinalph = notinalph
         self.alphabet = []
