@@ -207,3 +207,14 @@ class framework:
         ind, val = max(enumerate(hist), key=operator.itemgetter(1))
         res = (self.alphabet[ind], val)
         return res
+
+    def ind_of_c(self, inp):
+        """Returns the index of coincidence of the input string."""
+
+        hist = self.hist(inp)
+        summation = 0
+        for count in hist:
+            summation += count*(count-1)
+
+        n = len(inp)
+        return(1/(n*(n-1))*summation)
