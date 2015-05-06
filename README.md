@@ -56,9 +56,22 @@ We can also easily view the three histograms (cipher, english, crosscorrelation)
 
 ```python
 f.plot_hist(hist)
+```
+
+![hist](https://cloud.githubusercontent.com/assets/7459936/7499969/15b9422a-f42b-11e4-8039-69760924bdb7.png)
+
+```python
 f.plot_hist(cral.hist_eng)
+```
+
+![hist_eng](https://cloud.githubusercontent.com/assets/7459936/7500015/688435fa-f42b-11e4-9194-cd3436736eae.png)
+
+```python
 f.plot_hist(corr)
 ```
+
+![corr](https://cloud.githubusercontent.com/assets/7459936/7500021/6d3156c8-f42b-11e4-8bbb-c4a596ab9c2d.png)
+
 
 ##Pull Requests
 You are very welcome to contribute to this project, just open pull requests for bugfixes, new features etc. If you want to completely change the design (there is a lot of potential for that!) please create an issue first.
