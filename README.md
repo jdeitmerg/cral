@@ -10,6 +10,11 @@ There is no documentation yet, but the docstrings and the example below should g
 ##Dependencies
 * matplotlib
 
+##Installation
+Download (or clone) this repository and put cral.py into the folder which contains the scripts in
+which you want to use it. If you want to use it from the python interactive promt, make sure you
+start python from a directory containing cral.py.
+
 ##Example Usage
 All that cral contains is the framework class. Create an instance of it to use any of the provided functionality. Here's how you could break a caesar cipher:
 
