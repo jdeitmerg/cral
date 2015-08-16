@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import operator
 
 #Frequencies of letters in English texts. Alphabet is string.ascii_lowercase
-hist_eng = [.08167, .01492, .02782, .04253, .012702, .02228, .02015, .06094,
+hist_eng = [.08167, .01492, .02782, .04253, .12702, .02228, .02015, .06094,
             .06966, .00153, .00772, .04025, .02406, .06749, .07507, .01929,
             .00095, .05987, .06327, .09056, .02758, .00978, .02361, .00150,
             .01974, .00074]
