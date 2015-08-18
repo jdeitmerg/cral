@@ -69,13 +69,13 @@ f.plot_hist(hist)
 f.plot_hist(cral.hist_eng)
 ```
 
-![hist_eng](https://cloud.githubusercontent.com/assets/7459936/9335050/2bf55080-45d2-11e5-8fa7-0f4278d4d462.png)
+![hist_eng](https://cloud.githubusercontent.com/assets/7459936/9335347/cb9e5eaa-45d3-11e5-93f5-5a3f3626429f.png)
 
 ```python
 f.plot_hist(corr)
 ```
 
-![corr](https://cloud.githubusercontent.com/assets/7459936/9335048/2a15df3c-45d2-11e5-9313-998312ad2532.png)
+![corr](https://cloud.githubusercontent.com/assets/7459936/9335350/cebe261a-45d3-11e5-8b6e-7152584a796c.png)
 
 
 ##Pull Requests
